@@ -1,6 +1,7 @@
 # Trabalho Final de Laboratório de Arquitetura e Organização de Computadores 2
 Nome: Gustavo Cesar Leite de Oliveira Santos
 
+#Apresentação
 Este trabalho tem o intuito de explorar conhecimentos adquiridos ao longo das disciplinas prática e teórica. O objetivo do meu trabalho é desenvolver uma versão paralelizada do Algoritmo de Mandelbrot fornecido pelo professor.
 
 O trabalho culminou em muitas pesquisas, principalmente quanto aos conjuntos de instruções(MMX, SSE, AVX e etc...), e às próprias instruções de cada um deles, os tamanhos admitidos. O programa original é consituído de 3 laços de repetição for e o meu objetivo foi paralelizar o seu laço mais interno, utilizando o conjunto de instruções AVX, com registradores de 256 bits. No entanto um problema apreceu, trabalhei dias inteiros nele e não consegui resolver, e foi difícil conseguir ajuda pois a maioria otimizou os laços mais externos. 
@@ -14,3 +15,5 @@ Após esse problema, tentei implementar outra versão paralelizada, dessa vez al
 ![Laser Cutter Panel #1](https://raw.github.com/gustavocesarlos/TrabalhoFinalArq2/master/Gráficos/grafico1.png)
 
 Como pode-se ver, a versão que deveria ser otimizada leva em média 1 segundo a mais para gerar a imagem, o que provavelmente é devido a necessidade de criar vetores. Novamente foi utilizada a arquitetura AVX, utilizando registradores de 256 bits.
+
+Nesse novo algoritmo, denominado simdavx2.c, no entanto, a imagem resultante está perfeitamente de acordo com o esperado, ao contrário do que acontece na versão simdavx.c.
