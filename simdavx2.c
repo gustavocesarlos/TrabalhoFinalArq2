@@ -46,14 +46,14 @@ int main()
 		Cy[0] = iY; Cy[1] = iY+1; Cy[2] = iY+2; Cy[3] = iY+3;
 
 		__asm{
-			vmovupd ymm0, Cy
+			vmovupd ymm0, Cy          //aqui colocamos o conteúdo dos vetores em registradores de 256 bits
 			vmovupd ymm1, Res
 			vmovupd ymm2, Res1
-			vmulpd ymm0, ymm0, ymm1
+			vmulpd ymm0, ymm0, ymm1  //fazemos as operações de acordo com o algoritmo de Mandelbrot
 			vaddpd ymm0, ymm0, ymm2
 			vmovupd Cy, ymm0
 		}
-		
+		// agora Cy já foi calculado para 4 iterações
 		for (i = 0; i < 4; i++){
 			if (fabs(Cy[i]) < PixelHeight / 2) Cy[i] = 0.0; /* Main antenna */
 			for (iX = 0; iX < iXmax; iX++)
