@@ -6,6 +6,7 @@ Este trabalho tem o intuito de explorar conhecimentos adquiridos ao longo das di
 
 O trabalho culminou em muitas pesquisas, principalmente quanto aos conjuntos de instruções(MMX, SSE, AVX e etc...), e às próprias instruções de cada um deles, os tamanhos admitidos. O programa original é consituído de 3 laços de repetição for e o meu objetivo foi paralelizar o seu laço mais interno, utilizando o conjunto de instruções AVX, com registradores de 256 bits. No entanto um problema apreceu, trabalhei dias inteiros nele e não consegui resolver, e foi difícil conseguir ajuda pois a maioria otimizou os laços mais externos. 
 
+#Desenvolvimento
 Meu objetivo era fazer com que o meu programa calculasse 4 pixels ao mesmo tempo, no entanto a imagem resultante demora um tempo muito exorbitante para ser gerada o que não consegui explicar mesmo após muita pesquisa. No meu código tentei ao máximo fazer os cálculos em registradores, evitando muitos acessos à memória embora em alguns trechos isso tenha sido inevitável.
 
 Também realizei a compilação do código original no Visual Studio utilizando Otimização disabled e full optimization. A versão sem otimização demora 1:27 segundos para gerar a imagem, enquanto a versão otimizada leva 52, diferença muito considerável que se deve ao nível de paralelização elevado quando escolhemos a Otimização completa. Na pasta gráficos, existe um que ilustra essa situação.
@@ -16,4 +17,9 @@ Após esse problema, tentei implementar outra versão paralelizada, dessa vez al
 
 Como pode-se ver, a versão que deveria ser otimizada leva em média 1 segundo a mais para gerar a imagem, o que provavelmente é devido a necessidade de criar vetores. Novamente foi utilizada a arquitetura AVX, utilizando registradores de 256 bits.
 
-Nesse novo algoritmo, denominado simdavx2.c, no entanto, a imagem resultante está perfeitamente de acordo com o esperado, ao contrário do que acontece na versão simdavx.c.
+Nesse novo algoritmo, denominado simdavx2.c, no entanto, a imagem resultante está perfeitamente de acordo com o esperado, ao contrário do que acontece na versão simdavx.c. Vale ressaltar que todos os tempos citados e nos gráficos foram calculados utilizando o Windows Powershell.
+
+#Conclusão
+Este trabalho agregou muito conhecimento principalmente no que diz respeito às diferentes arquiteturas presentes em cada geração dos processadores Intel, o que antes era desconhecido por mim, o número de bits com que os registradores de cada arquitetura trabalha, as instruções que possem nomenclaturas diferentes e sintaxes similares. Por exemplo, na arquitetura AVX os registradores são do tipo ymm[x], e todas as instruções são precedidas pela letra v, como em vmovupd, vmulpd, vaddpd e etc. E também foi extremamente útil para saber como usar as instruções, não apenas saber as sintaxes.
+
+
